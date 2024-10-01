@@ -1,7 +1,40 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './modules/user/user.module';
+import { UserSchema } from './modules/user/infrastructure/persistence/user.schema';
+import { AuthModule } from './modules/auth/auth.module';
+import { ProjectModule } from './modules/project/project.module';
+import { ProjectSchema } from './modules/project/infrastructure/persistence/project.schema';
+import { TaskModule } from './modules/task/task.module';
+import { TaskSchema } from './modules/task/infrastructure/persistence/task.schema';
+
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST'),
+        port: parseInt(configService.get('DB_PORT')),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_NAME'),
+        entities: [UserSchema, ProjectSchema, TaskSchema],
+        synchronize: true,
+      }),
+    }),
+    UserModule,
+    AuthModule,
+    ProjectModule,
+    TaskModule,
+  ],
   controllers: [],
   providers: [],
 })
