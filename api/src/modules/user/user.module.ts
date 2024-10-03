@@ -7,11 +7,15 @@ import { UserMapper } from "./application/mapper/user.mapper";
 import { USER_REPOSITORY } from "./application/repository/user.repository";
 import { UserPostgresRepository } from "./infrastructure/persistence/user.postgres.repository";
 import { BcryptService } from "./infrastructure/security/bcrypt.service";
+import { AuthGuard } from "../auth/application/guards/auth.guard";
+import { JwtService } from "@nestjs/jwt";
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserSchema])],
   controllers: [UserController],
   providers: [
+    AuthGuard,
+    JwtService,
     BcryptService,
     UserService,
     UserMapper,
