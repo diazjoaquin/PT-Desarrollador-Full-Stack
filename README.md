@@ -99,7 +99,7 @@ Para autenticar usuarios, se debe utilizar JWT. El backend cuenta con los siguie
 
 **POST /auth/register:** Registrar un nuevo usuario.<br>
 **POST /auth/login:** Iniciar sesión y obtener un token JWT.<br>
-El token JWT debe ser incluido en el encabezado de las solicitudes como Authorization: Bearer <token> para acceder a los endpoints protegidos.
+El token JWT debe ser incluido en los headers de las solicitudes como access_token para acceder a los endpoints protegidos.
 
 #### Sistema de Permisos
 El sistema de permisos está basado en roles:<br>
