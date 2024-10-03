@@ -5,12 +5,16 @@ import { ProjectSchema } from "./project.schema";
 import { Repository } from "typeorm";
 import { Project } from "../../domain/project.domain";
 import { CreateProjectDto } from "../../application/dto/create-project.dto";
+import { UserSchema } from "src/modules/user/infrastructure/persistence/user.schema";
+import { User } from "src/modules/user/domain/user.domain";
 
 @Injectable()
 export class ProjectPostgresRepository implements IProjectRepository {
   constructor(
     @InjectRepository(ProjectSchema)
     private readonly projectRepository: Repository<Project>,
+    @InjectRepository(UserSchema)
+    private readonly usersRepository: Repository<User>,
   ) {}
 
   async findAll(): Promise<Project[]> {
@@ -36,9 +40,19 @@ export class ProjectPostgresRepository implements IProjectRepository {
   async create(project: CreateProjectDto): Promise<Project> {
     const foundedProject = await this.projectRepository.findOne({ 
       where: {
-        id: project.id
+        id: project.userId
       }
      });
+
+     const foundedUser = await this.usersRepository.findOne({
+      where: {
+        id: project.userId
+      }
+     });
+
+     if (!foundedUser) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+     }
 
     if (foundedProject) {
       throw new HttpException('Project already exists', HttpStatus.CONFLICT);
