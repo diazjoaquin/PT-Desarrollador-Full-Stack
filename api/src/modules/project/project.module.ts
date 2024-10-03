@@ -8,6 +8,8 @@ import { PROJECT_REPOSITORY } from "./application/repository/project.repository"
 import { ProjectPostgresRepository } from "./infrastructure/persistence/project.postgres.repository";
 import { UserSchema } from "../user/infrastructure/persistence/user.schema";
 import { UserModule } from "../user/user.module";
+import { JwtService } from "@nestjs/jwt";
+import { AuthGuard } from "../auth/application/guards/auth.guard";
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProjectSchema, UserSchema]),
@@ -15,6 +17,8 @@ import { UserModule } from "../user/user.module";
   ],
   controllers: [ProjectController],
   providers: [
+    AuthGuard,
+    JwtService,
     ProjectService,
     ProjectMapper,
     {
