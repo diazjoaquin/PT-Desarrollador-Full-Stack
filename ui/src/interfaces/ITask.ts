@@ -1,8 +1,7 @@
 export interface ITask {
-  id: number,
   projectId: number,
   assignedTo: number,
-  name: string,
-  description: string,
+  ['task-name']: string,
+  ['task-description']: string,
   state: string,
 }
