@@ -34,7 +34,7 @@ export const useSignUp = () => {
       getNotification('success', 'Signed up successfully. Please sign in.');
       navigate('/');
     } catch (error) {
-      console.log(error);
+      getNotification('error', 'Error signing up. Please try again.');
     }
     setLoading(false);
   }

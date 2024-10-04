@@ -33,7 +33,8 @@ export const useSignIn = () => {
       getNotification('success', 'Signed in successfully');
       navigate('/');
     } catch (error) {
-      console.log(error);      
+      console.log(error);
+      getNotification('error', 'Error signing in. Please try again');    
     }
     setLoading(false);
   }
