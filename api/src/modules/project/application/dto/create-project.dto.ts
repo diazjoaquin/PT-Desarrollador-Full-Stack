@@ -1,3 +1,4 @@
+import { Type } from "class-transformer"
 import { IsDate, IsNumber, IsString } from "class-validator"
 
 export class CreateProjectDto {
@@ -11,8 +12,10 @@ export class CreateProjectDto {
   description: string
 
   @IsDate()
+  @Type(() => Date)
   startingDate: Date
 
   @IsDate()
+  @Type(() => Date)
   endingDate: Date
 }

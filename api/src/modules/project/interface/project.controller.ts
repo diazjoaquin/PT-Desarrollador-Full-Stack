@@ -27,7 +27,7 @@ export class ProjectController {
 
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  async create(@Body() project: Project) {
+  async create(@Body() project: CreateProjectDto) {
     return await this.projectService.create(project);
   }
 
