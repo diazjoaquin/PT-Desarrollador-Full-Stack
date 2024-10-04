@@ -11,10 +11,6 @@ export const TaskSchema = new EntitySchema<Task>({
       primary: true,
       generated: true
     },
-    asignedTo: {
-      name: 'asigned_to',
-      type: 'integer'
-    },
     name: {
       name: 'name',
       type: 'varchar'
@@ -39,7 +35,7 @@ export const TaskSchema = new EntitySchema<Task>({
         name: 'project_id',
       }
     },
-    asignedTo: {
+    assignedTo: {
       type: 'many-to-one',
       target: 'User',
       cascade: true,

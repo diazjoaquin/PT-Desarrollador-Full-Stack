@@ -11,7 +11,7 @@ export class TaskController {
   ) {}
 
   @Post()
-  async create(@Body() task: Task) {
+  async create(@Body() task: CreateTaskDto) {
     return await this.taskService.create(task);
   }
 

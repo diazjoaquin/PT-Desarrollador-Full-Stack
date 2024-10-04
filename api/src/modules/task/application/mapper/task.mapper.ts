@@ -6,7 +6,7 @@ import { Task } from "../../domain/task.domain";
 export class TaskMapper {
   public fromDtoToEntity(taskDto: CreateTaskDto): Task {
     const newTask = new Task();
-    newTask.asignedTo = taskDto.asignedTo;
+    newTask.assignedTo = taskDto.assignedTo;
     newTask.projectId = taskDto.projectId;
     newTask.name = taskDto.name;
     newTask.description = taskDto.description;

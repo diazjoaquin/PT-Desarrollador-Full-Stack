@@ -3,7 +3,7 @@ import { State } from "./state.enum";
 
 export class Task extends Base {
   projectId: number;
-  asignedTo: number;
+  assignedTo: number;
   name: string;
   description: string;
   state: State;

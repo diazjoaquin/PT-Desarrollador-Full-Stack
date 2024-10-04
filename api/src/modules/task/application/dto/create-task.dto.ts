@@ -6,7 +6,7 @@ export class CreateTaskDto {
   projectId: number;
 
   @IsNumber()
-  asignedTo: number;
+  assignedTo: number;
 
   @IsString()
   name: string;
