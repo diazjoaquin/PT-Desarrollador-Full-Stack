@@ -8,9 +8,6 @@ export class CreateTaskDto {
   @IsNumber()
   asignedTo: number;
 
-  @IsNumber()
-  id: number;
-
   @IsString()
   name: string;
 

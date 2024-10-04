@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query } from "
 import { TaskService } from "../application/service/task.service";
 import { CreateTaskDto } from "../application/dto/create-task.dto";
 import { UpdateTaskDto } from "../application/dto/update-task.dto";
+import { Task } from "../domain/task.domain";
 
 @Controller('task')
 export class TaskController {
@@ -10,7 +11,7 @@ export class TaskController {
   ) {}
 
   @Post()
-  async create(@Body() task: CreateTaskDto) {
+  async create(@Body() task: Task) {
     return await this.taskService.create(task);
   }
 

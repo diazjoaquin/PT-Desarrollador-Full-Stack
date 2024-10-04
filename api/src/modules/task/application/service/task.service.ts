@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { ITaskRepository, TASK_REPOSITORY } from "../repository/task.repository";
 import { CreateTaskDto } from "../dto/create-task.dto";
 import { UpdateTaskDto } from "../dto/update-task.dto";
+import { Task } from "../../domain/task.domain";
 
 @Injectable()
 export class TaskService implements ITaskRepository {
@@ -10,7 +11,7 @@ export class TaskService implements ITaskRepository {
     private readonly taskRepository: ITaskRepository,
   ) {}
 
-  async create(task: CreateTaskDto): Promise<CreateTaskDto> {
+  async create(task: CreateTaskDto): Promise<Task> {
     return await this.taskRepository.create(task);
   }
 
@@ -18,7 +19,7 @@ export class TaskService implements ITaskRepository {
     return await this.taskRepository.update(id, task);
   }
 
-  async getByProjectId(id: number): Promise<CreateTaskDto[]> {
+  async getByProjectId(id: number): Promise<Task[]> {
     return await this.taskRepository.getByProjectId(id);
   }
 }

@@ -35,10 +35,8 @@ export const TaskSchema = new EntitySchema<Task>({
       target: 'Project',
       cascade: true,
       onDelete: 'CASCADE',
-      eager: true,
       joinColumn: {
         name: 'project_id',
-        referencedColumnName: 'id'
       }
     },
     asignedTo: {
