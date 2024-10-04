@@ -85,27 +85,27 @@ Para acceder a la base de datos, puedes usar pgAdmin o cualquier otra herramient
 La API está protegida con autenticación JWT. A continuación, se muestra una lista de los endpoints disponibles:
 
 #### Proyectos
-**-GET /projects:** Obtener todos los proyectos.
-**GET /projects/{id}:** Obtener un proyecto específico.
-**POST /projects:** Crear un nuevo proyecto (Solo Admin).
-**PUT /projects/{id}:** Actualizar un proyecto existente (Solo Admin).
-**DELETE /projects/{id}:** Eliminar un proyecto (Solo Admin).
+**GET /projects:** Obtener todos los proyectos.<br>
+**GET /projects/{id}:** Obtener un proyecto específico.<br>
+**POST /projects:** Crear un nuevo proyecto (Solo Admin).<br>
+**PUT /projects/{id}:** Actualizar un proyecto existente (Solo Admin).<br>
+**DELETE /projects/{id}:** Eliminar un proyecto (Solo Admin).<br>
 #### Tareas
-**POST /tasks:** Crear una nueva tarea.
-**PATCH /tasks/{id}:** Actualizar el estado de una tarea.
-**GET /tasks?project_id={id}:** Obtener tareas filtradas por proyecto.
+**POST /tasks:** Crear una nueva tarea.<br>
+**PATCH /tasks/{id}:** Actualizar el estado de una tarea.<br>
+**GET /tasks?project_id={id}:** Obtener tareas filtradas por proyecto.<br>
 #### Autenticación
-Para autenticar usuarios, se debe utilizar JWT. El backend cuenta con los siguientes endpoints de autenticación:
+Para autenticar usuarios, se debe utilizar JWT. El backend cuenta con los siguientes endpoints de autenticación:<br>
 
-**POST /auth/register:** Registrar un nuevo usuario.
-**POST /auth/login:** Iniciar sesión y obtener un token JWT.
-El token JWT debe ser incluido en el encabezado de las solicitudes como Authorization: Bearer <token> para acceder a los endpoints protegidos.
+**POST /auth/register:** Registrar un nuevo usuario.<br>
+**POST /auth/login:** Iniciar sesión y obtener un token JWT.<br>
+El token JWT debe ser incluido en los headers de las solicitudes como access_token para acceder a los endpoints protegidos.
 
-Sistema de Permisos
-El sistema de permisos está basado en roles:
+#### Sistema de Permisos
+El sistema de permisos está basado en roles:<br>
 
-**Admin:** Puede gestionar todos los proyectos y tareas.
-**Usuario Regular:** Solo puede gestionar las tareas dentro de los proyectos en los que está asignado.
+**Admin:** Puede gestionar todos los proyectos y tareas.<br>
+**Usuario Regular:** Solo puede gestionar las tareas dentro de los proyectos en los que está asignado.<br>
 
 
 
