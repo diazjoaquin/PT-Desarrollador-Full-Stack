@@ -11,6 +11,7 @@ export const useProjects = (onSuccess: () => void, userId: number) => {
 	const [error, setError] = useState<string | null>(null);
 
   const initialValues: IProjectFormData = {
+    userId: userId,
     name: '',
     description: '',
     ['starting-date']: '',
