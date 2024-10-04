@@ -7,7 +7,7 @@ export const Navbar = () => {
   return (
     <div className="h-16 w-screen flex flex-row justify-end items-center">
       <div className="px-8">
-        <Button label="Logout" type="button" handleClick={handleLogOut}/>
+        <Button label="Logout" type="button" onClick={handleLogOut}/>
       </div>
     </div>
   )
