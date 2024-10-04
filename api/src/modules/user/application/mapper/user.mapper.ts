@@ -6,7 +6,6 @@ import { CreateUserDto } from '../dto/create-user.dto';
 export class UserMapper {
   public fromDtoToEntity(userDto: CreateUserDto): User {
     const newUser = new User();
-    newUser.id = userDto.id;
     newUser.name = userDto.name;
     newUser.email = userDto.email;
     newUser.password = userDto.password;

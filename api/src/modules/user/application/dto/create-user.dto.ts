@@ -2,9 +2,6 @@ import { IsEnum, IsNumber, IsString } from "class-validator";
 import { Role } from "../../domain/role.enum";
 
 export class CreateUserDto {
-  @IsNumber()
-  id: number;
-
   @IsString()
   name: string;
 
