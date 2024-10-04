@@ -9,6 +9,7 @@ import { useNotification } from "../hooks/useNotification";
 import { ConfirmDeleteProject } from "../components/project/ConfirmDeleteProject";
 import { useState } from "react";
 import { useTask } from "../hooks/useTask";
+import { AddTaskForm } from "../components/task/AddTaskForm";
 
 export const Home = () => {
 	const { authState } = useAuth();
@@ -16,6 +17,9 @@ export const Home = () => {
   const [ projectId, setProjectId ] = useState<number | null>(null);
 
   const {
+    isOpenAddTask,
+    openAddTask,
+    closeAddTask,
     isOpenDeleteProject,
     openDeleteProject,
     closeDeleteProject,
@@ -28,7 +32,7 @@ export const Home = () => {
     handleSubmit, 
     initialValues } = useProjects(closeCreateProject, userId!);
   const { getNotification } = useNotification();
-  const { tasks, fetchTasks, currentProject } = useTask();
+  const { tasks, fetchTasks, currentProject, taskInitialValues, handleSubmitTask } = useTask(userId!);
 
   return authState.isAuth ? (
     <div className="flex pt-12 px-4">
@@ -39,7 +43,7 @@ export const Home = () => {
         setProjectId={setProjectId}
         fetchTasks={fetchTasks}
       />
-      <TaskList tasks={tasks} currentProject={currentProject}/>
+      <TaskList tasks={tasks} currentProject={currentProject} openAddTask={openAddTask}/>
       <CreateProjectForm
         handleCloseModal={closeCreateProject} 
         isOpen={isOpenCreateProject}
@@ -52,6 +56,12 @@ export const Home = () => {
         handleCloseModal={closeDeleteProject}
         isOpen={isOpenDeleteProject}
         projectId={projectId!}
+      />
+      <AddTaskForm
+        handleSubmit={(values) => handleSubmitTask(values, closeAddTask)}
+        initialValues={taskInitialValues}
+        handleCloseModal={closeAddTask}
+        isOpen={isOpenAddTask}
       />
     </div>
   ) : (
