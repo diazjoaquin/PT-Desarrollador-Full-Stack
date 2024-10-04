@@ -1,7 +1,7 @@
 import { Button } from "../../common/components/Button";
 
 interface Props {
-  handleDelete: (id: number) => void;
+  handleDelete: (id: number, handleCloseModal: () => void) => void;
   handleCloseModal: () => void;
   isOpen: boolean;
   projectId: number;
@@ -22,7 +22,7 @@ export const ConfirmDeleteProject: React.FC<Props> = ({
       <div className="flex z-30 flex-col border-2 items-center justify-center w-2/5 h-2/6 bg-white rounded-xl">
         <p className="text-xl font-bold text-black">Are you sure you want to delete this project?</p>
         <div className="flex flex-row gap-5 pt-5">
-          <Button label="Confirm" type="button" onClick={() => handleDelete(projectId)}/>
+          <Button label="Confirm" type="button" onClick={() => handleDelete(projectId, handleCloseModal)}/>
           <Button label="Cancel" type="button" onClick={handleCloseModal} />
         </div>
       </div>

@@ -50,6 +50,7 @@ export const useProjects = (onSuccess: () => void, userId: number) => {
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
+          console.log('Error fetching projects:', error.message);
         }
       } finally {
         setLoading(false);
@@ -58,13 +59,15 @@ export const useProjects = (onSuccess: () => void, userId: number) => {
     fetchProjects();
   }, []);
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number, onSuccess: () => void) => {
     console.log("Deleting project with ID:", id);
     try {
       const reponse = await apiService.delete(`project/${id}`);
       if (reponse) {
         setProjects((prevProjects) => {
 					const updatedProjects = prevProjects.filter((project) => project.id !== id);
+          console.log('Updated projects:', updatedProjects);
+          onSuccess();
 					return updatedProjects;
 				})
       }
