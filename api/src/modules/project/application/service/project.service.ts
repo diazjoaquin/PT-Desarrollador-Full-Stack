@@ -16,7 +16,7 @@ export class ProjectService implements IProjectRepository {
   findById(id: number): Promise<Project> {
     return this.projectRepository.findById(id);
   }
-  create(project: Project): Promise<CreateProjectDto> {
+  create(project: CreateProjectDto): Promise<Project> {
     return this.projectRepository.create(project);
   }
   update(id: number, project: UpdateProjectDto): Promise<UpdateProjectDto> {

@@ -36,7 +36,15 @@ export const ProjectSchema = new EntitySchema<Project>({
       eager: true,
       joinColumn: {
         name: 'user_id',
-        referencedColumnName: 'id'
+      }
+    },
+    tasks: {
+      type: 'one-to-many',
+      target: 'Task',
+      cascade: true,
+      onDelete: 'CASCADE',
+      joinColumn: {
+        name: 'project_id',
       }
     }
   }

@@ -2,10 +2,7 @@ import { IsDate, IsNumber, IsString } from "class-validator"
 
 export class CreateProjectDto {
   @IsNumber()
-  id: number
-
-  @IsNumber()
-  userId: number  
+  userId: number 
 
   @IsString()
   name: string
