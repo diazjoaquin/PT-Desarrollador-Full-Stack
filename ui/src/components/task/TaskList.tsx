@@ -5,18 +5,22 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { ITask } from '../../interfaces/ITask';
+import { IProject } from '../../interfaces/IProject';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 interface Props {
-  tasks: any[]
+  tasks: ITask[];
+  currentProject: IProject | null;
 }
 
-export default function BasicTable({ tasks }: Props) {
-
-  console.log('====================================');
-  console.log(tasks);
-  console.log('====================================');
+export default function BasicTable({ tasks, currentProject }: Props) {
   return (
     <div className="flex-1">
+        <DialogTitle className="text-center">
+          {currentProject?.name ? currentProject?.name : "Select a project"}
+        </DialogTitle>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -27,7 +31,7 @@ export default function BasicTable({ tasks }: Props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tasks?.map((task) => (
+            {tasks.length > 0 ? tasks.map((task) => (
               <TableRow
                 key={task.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -36,7 +40,10 @@ export default function BasicTable({ tasks }: Props) {
                 <TableCell align="left">{task.assignedTo}</TableCell>
                 <TableCell align="left"><span className={`${task.state === "completed" ? "bg-green-500" : "bg-gray-300"} font-semibold px-2 py-2 rounded-md`}>{task.state}</span></TableCell>
               </TableRow>
-            ))}
+            )) : 
+            <TableCell align="left">
+            There is no tasks
+            </TableCell> }
           </TableBody>
         </Table>
       </TableContainer>
