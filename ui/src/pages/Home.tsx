@@ -28,7 +28,7 @@ export const Home = () => {
     handleSubmit, 
     initialValues } = useProjects(closeCreateProject, userId!);
   const { getNotification } = useNotification();
-  const { tasks, fetchTasks } = useTask();
+  const { tasks, fetchTasks, currentProject } = useTask();
 
   return authState.isAuth ? (
     <div className="flex pt-12 px-4">
@@ -39,7 +39,7 @@ export const Home = () => {
         setProjectId={setProjectId}
         fetchTasks={fetchTasks}
       />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} currentProject={currentProject}/>
       <CreateProjectForm
         handleCloseModal={closeCreateProject} 
         isOpen={isOpenCreateProject}
