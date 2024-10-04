@@ -6,6 +6,6 @@ export function fromUserFormToData (body: IUserFormData) {
     name: body.name,
     email: body.email,
     password: body.password,
-		role: Role.USER,
+		role: Role.ADMIN,
   }
 }
