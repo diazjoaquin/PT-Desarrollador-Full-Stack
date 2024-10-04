@@ -5,22 +5,29 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { ITask } from '../../interfaces/ITask';
 import { IProject } from '../../interfaces/IProject';
 import DialogTitle from '@mui/material/DialogTitle';
+import AddIcon from '@mui/icons-material/Add';
+
 
 
 interface Props {
-  tasks: ITask[];
+  tasks: any[];
   currentProject: IProject | null;
+  openAddTask: () => void;
 }
 
-export default function BasicTable({ tasks, currentProject }: Props) {
+export default function BasicTable({ tasks, currentProject, openAddTask }: Props) {
+  console.log('tasks', tasks);
+  
   return (
     <div className="flex-1">
+      <div className='flex flex-row items-center justify-between px-5'>
         <DialogTitle className="text-center">
           {currentProject?.name ? currentProject?.name : "Select a project"}
         </DialogTitle>
+        {currentProject ? <span onClick={openAddTask} className='border-2 rounded-xl px-2 py-2 border-gray-800 hover:cursor-pointer'><AddIcon/> Add tasks</span> : null }
+      </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -37,7 +44,7 @@ export default function BasicTable({ tasks, currentProject }: Props) {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell align="left">{task.name}</TableCell>
-                <TableCell align="left">{task.assignedTo}</TableCell>
+                <TableCell align="left">{task.assignedTo.email}</TableCell>
                 <TableCell align="left"><span className={`${task.state === "completed" ? "bg-green-500" : "bg-gray-300"} font-semibold px-2 py-2 rounded-md`}>{task.state}</span></TableCell>
               </TableRow>
             )) : 
