@@ -56,7 +56,7 @@ export class TaskPostgresRepository implements ITaskRepository {
 
     const tasks = await this.taskRepository.find({
       where: { projectId: id },
-      relations: ['projectId', 'asignedTo']
+      relations: ['projectId', 'assignedTo']
     });
     return tasks;
   }

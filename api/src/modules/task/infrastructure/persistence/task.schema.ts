@@ -41,7 +41,7 @@ export const TaskSchema = new EntitySchema<Task>({
       cascade: true,
       onDelete: 'CASCADE',
       joinColumn: {
-        name: 'asigned_to',
+        name: 'assigned_to',
       }
     }
   }
